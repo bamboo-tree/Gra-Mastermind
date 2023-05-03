@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -23,6 +22,7 @@ public class Row {
 
     private JPanel container;
     public Button[] buttons = new Button[4];
+    public Ball[] balls = new Ball[4];
 
     
     public Row(){
@@ -33,19 +33,15 @@ public class Row {
         container.setBorder(BorderFactory.createLineBorder(DARK_GRAY, BORDER_THICKNESS, false));
     }
 
-    public Row(int[] colorIndex){
+    public Row(int xxx){
         container = new JPanel();
         container.setPreferredSize(new Dimension(Board.WIDTH, Board.HEIGHT/Board.ROWS));
         container.setBackground(GRAY);
         container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP, V_GAP));
         container.setBorder(BorderFactory.createLineBorder(DARK_GRAY, BORDER_THICKNESS, false));
-        for(int i : colorIndex){
-            JLabel temp = new JLabel();
-            temp.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
-            temp.setBackground(null);
-            temp.setOpaque(true);
-            temp.setIcon(Ball.colors[i]);
-            container.add(temp);
+        for(int i = 0; i < 4; i++){
+            balls[i] = new Ball(2);
+            container.add(balls[i].getBall());
         }
     }
 
@@ -68,8 +64,19 @@ public class Row {
         }
     }
 
+    public void addColors(int[] index){
+        for(int i = 0; i < 4; i++){
+            balls[i] = new Ball(index[i]);
+            this.container.add(balls[i].getBall());
+        }
+    }
+
 
     public JPanel getRow(){
         return container;
+    }
+
+    public int getButton(int index){
+        return buttons[index].buttonColorIndex;
     }
 }

@@ -1,12 +1,16 @@
 package window.board;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Ball {
 
     final static protected int SIZE = 36;
     final static protected int SPECIAL_SIZE = 20;
+
+    JLabel ball;
 
 
     final static private ImageIcon BLACK = new ImageIcon(new ImageIcon("./img/black.png").getImage().getScaledInstance(SPECIAL_SIZE, SPECIAL_SIZE, Image.SCALE_DEFAULT));
@@ -23,11 +27,25 @@ public class Ball {
     final static protected ImageIcon[] colors = {RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, INDIGO, pink};
 
 
+    public Ball(int index){
+        ball = new JLabel();
+        ball.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
+        ball.setBackground(null);
+        ball.setOpaque(true);
+        ball.setIcon(Ball.colors[index]);
+        ball.setVisible(true);
+    }
+
+
     protected ImageIcon getWhite(){
         return WHITE;
     }
     protected ImageIcon getBlack(){
         return BLACK;
+    }
+
+    public JLabel getBall(){
+        return ball;
     }
 
 }

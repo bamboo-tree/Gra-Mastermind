@@ -15,14 +15,13 @@ public class MyKeyListener implements KeyListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == 32 || e.getKeyCode() == 10){
             System.out.println("submit");
-            submitted = true;
+            this.submitted = true;
         }
         System.out.println(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        submitted = false;
     }
     
 }

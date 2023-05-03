@@ -12,6 +12,7 @@ public class Button {
         button = new JButton();
         button.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
         button.setBackground(null);
+        button.setFocusable(false);
         button.setContentAreaFilled(false);
         button.setBorder(null);
         button.setIcon(Ball.colors[this.buttonColorIndex]);
