@@ -28,7 +28,6 @@ public class Board {
         myBoard.setBackground(Color.BLUE);
     }
 
-    
 
     public JPanel getBoard(){
         return myBoard;
