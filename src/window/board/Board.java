@@ -10,16 +10,14 @@ import javax.swing.JPanel;
 
 public class Board {
     
+    // satłe
     final static protected int WIDTH = 400;
     final static protected int HEIGHT = 700;
     final static protected int ROWS = 12; // -2
     final private JPanel myBoard;
 
-    Row hidden;
-    Row player;
-    Row button;
 
-
+    // konstruktor (towrzy JPanel pod planszę gry)
     public Board(){
         myBoard = new JPanel();
         myBoard.setFocusable(true);
@@ -28,7 +26,7 @@ public class Board {
         myBoard.setBackground(Color.BLUE);
     }
 
-
+    // getter
     public JPanel getBoard(){
         return myBoard;
     }

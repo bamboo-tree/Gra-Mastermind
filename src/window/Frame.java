@@ -12,12 +12,13 @@ import javax.swing.WindowConstants;
 
 public class Frame {
     
+    // stałe
     final private int WIDTH = 900;
     final private int HEIGHT = 700;
     final private JFrame myFrame;
 
 
-
+    // konstruktor (tworzy JFrame; okno i nadaje mu właściwości)
     public Frame(){
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -33,7 +34,7 @@ public class Frame {
         myFrame.setIconImage(new ImageIcon("./img/icon.png").getImage());
     }
 
-
+    //getter
     public JFrame getFrame(){
         return myFrame;
     }

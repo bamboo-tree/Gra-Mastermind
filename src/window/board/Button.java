@@ -5,9 +5,13 @@ import javax.swing.JButton;
 
 public class Button {
     
+    // zmienne
     private JButton button;
     protected int buttonColorIndex = 0;
 
+
+    
+    // konstruktor (tworzy JButton z grafiką odpowiedniego przcisku)
     public Button(){
         button = new JButton();
         button.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
@@ -21,6 +25,7 @@ public class Button {
 
 
 
+    // zmiana koloru przycisku na kolejny
     public void nextColor(){
         if(buttonColorIndex < Ball.colors.length-1){
             buttonColorIndex++;
@@ -31,6 +36,9 @@ public class Button {
         this.button.setIcon(Ball.colors[buttonColorIndex]);
     }
 
+
+
+    // getter
     public JButton getButton(){
         return this.button;
     }
