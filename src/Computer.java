@@ -1,7 +1,16 @@
+import java.awt.Color;
 import java.util.Random;
 
 public class Computer {
     
+    // colors
+    final public Color WHITE = new Color(0xF4F7F5);
+    final public Color LIGHT = new Color(0xA7A2A9);
+    final public Color GRAY = new Color(0x575A5E);
+    final public Color BLACK = new Color(0x08090A);
+    final public Color DARK = new Color(0x222823);
+
+
 
     // zmienne pomocnicze
     private int[] generatedColors = new int[4];

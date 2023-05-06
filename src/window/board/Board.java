@@ -1,6 +1,7 @@
 package window.board;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class Board {
         myBoard.setFocusable(true);
         myBoard.setLayout(new GridLayout(ROWS, colors));
         myBoard.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        myBoard.setBackground(Color.BLACK);
     }
 
     // getter

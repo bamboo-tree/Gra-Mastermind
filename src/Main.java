@@ -17,8 +17,8 @@ public class Main{
 
         // obiekty i tablice pomocnicze dla board
         Row[] rowArray = new Row[10];
-        Row last = new Row(false);
-        Row first = new Row(false);
+        Row last = new Row(false, computer.DARK, computer.BLACK);
+        Row first = new Row(false, computer.DARK, computer.BLACK);
         int[] submittedColors = new int[4];
         int currentRow = 0;
 
@@ -30,11 +30,7 @@ public class Main{
 
 
 
-//         1.   Dodać sekcję z odpowiedziami
-//         2.   Nadać jej funkcjonalność
-// 
-//         *    Przejrzeć kod, sprawdzić czy nie ma niepotrzebnie użytego public
-// 
+
 //         *    Dodać tworzenie gracza
 //         *    Dodać prostą instrukcję obsługi i zasady gry
 //         *    Dodać możliwość wyboru trybu (inny sposób prezentowania odpowiedzi, uproszczony lub normalny) 
@@ -59,20 +55,20 @@ public class Main{
 
 
         // dodanie pustego rzedu na gorze output
-        output.getOutput().add(new Row(true).getRow());
+        output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
 
 
         // tworzenie rzędów w których będą kolejne odpowiedzi gracza
         for(int i = 9; i >= 0; i--){
-            rowArray[i] = new Row(false);
+            rowArray[i] = new Row(false, computer.GRAY, computer.BLACK);
             board.getBoard().add(rowArray[i].getRow());
 
-            outputRow[i] = new Row(true);
+            outputRow[i] = new Row(true, computer.LIGHT, computer.BLACK);
             output.getOutput().add(outputRow[i].getRow());
         }
 
         // dodanie pustego rzedu na dole output
-        output.getOutput().add(new Row(true).getRow());
+        output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
 
 
         
@@ -104,7 +100,7 @@ public class Main{
         while(currentRow < 10 && !computer.didWon()){
 
             // opoznienie dla poprawnego dzialania keyListener'a
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(50);
 
             // sprawdzanie czy odpowiedź została zatwierdzona
             if(keyListener.submitted){ 

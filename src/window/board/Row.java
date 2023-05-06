@@ -12,10 +12,6 @@ import javax.swing.JPanel;
 
 public class Row {
 
-    // zdefiniowane kolory
-    final private Color GRAY = new Color(0xD6E5E3);
-    final private Color DARK_GRAY = new Color(0xCACFD6);
-
     // stałe
     final private int BORDER_THICKNESS = 3;
     final private int HEIGHT = Board.HEIGHT/Board.ROWS;
@@ -32,24 +28,19 @@ public class Row {
 
     
     // konstruktor (tworzy JPanel)
-    public Row(boolean output){
+    public Row(boolean output, Color background, Color border){
 
         System.out.println(HEIGHT);
 
         container = new JPanel();
         container.setPreferredSize(new Dimension(Board.WIDTH, HEIGHT));
+        container.setBackground(background);
+        container.setBorder(BorderFactory.createLineBorder(border, BORDER_THICKNESS, false));
         
-
-        if(!output){
-            container.setBackground(GRAY);
+        if(!output)
             container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP_BOARD, V_GAP_BOARD));
-            container.setBorder(BorderFactory.createLineBorder(DARK_GRAY, BORDER_THICKNESS, false));
-        }
-        else{
-            container.setBackground(DARK_GRAY);
+        else
             container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP_OUTPUT, V_GAP_OUTPUT));
-            container.setBorder(BorderFactory.createLineBorder(GRAY, BORDER_THICKNESS, false));
-        }
     }
 
 
