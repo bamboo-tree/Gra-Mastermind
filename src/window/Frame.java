@@ -10,6 +10,7 @@ import javax.swing.WindowConstants;
 
 
 
+
 public class Frame {
     
     // stałe
@@ -27,7 +28,7 @@ public class Frame {
         myFrame.setLayout(new BorderLayout());
         myFrame.setSize(WIDTH, HEIGHT);
         myFrame.setVisible(true);
-        myFrame.setLocation(dimension.width/2 - WIDTH/2, dimension.height/2 - HEIGHT/2);    // place window in center of the screem
+        myFrame.setLocation(dimension.width/2 - WIDTH/2, dimension.height/2 - HEIGHT/2);
         myFrame.setVisible(true);
         myFrame.setResizable(false);
         myFrame.setTitle("MASTERMIND");

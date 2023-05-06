@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.util.concurrent.TimeUnit;
 
 import window.*;
@@ -9,16 +10,23 @@ public class Main{
         // tworzenie obiektów
         Frame frame = new Frame();
         Board board = new Board();
+        Output output = new Output();
         Computer computer = new Computer();
         MyKeyListener keyListener = new MyKeyListener();
 
 
-        // obiekty i tablice pomocnicze
+        // obiekty i tablice pomocnicze dla board
         Row[] rowArray = new Row[10];
-        Row last = new Row();
-        Row first = new Row();
+        Row last = new Row(false);
+        Row first = new Row(false);
         int[] submittedColors = new int[4];
         int currentRow = 0;
+
+        //
+        Row[] outputRow = new Row[10];
+
+
+        
 
 
 
@@ -46,16 +54,25 @@ public class Main{
 
         // tworzenie kombinacji kolorów, wyświetlanie ich na samej górze
         computer.generate();
-        first.addColors(computer.getGeneratedColors());
+        first.addColors(computer.getGeneratedColors(), false);
         board.getBoard().add(first.getRow());
 
+
+        // dodanie pustego rzedu na gorze output
+        output.getOutput().add(new Row(true).getRow());
 
 
         // tworzenie rzędów w których będą kolejne odpowiedzi gracza
         for(int i = 9; i >= 0; i--){
-            rowArray[i] = new Row();
+            rowArray[i] = new Row(false);
             board.getBoard().add(rowArray[i].getRow());
+
+            outputRow[i] = new Row(true);
+            output.getOutput().add(outputRow[i].getRow());
         }
+
+        // dodanie pustego rzedu na dole output
+        output.getOutput().add(new Row(true).getRow());
 
 
         
@@ -70,7 +87,10 @@ public class Main{
 
 
         // dodanie board do ekranu
-        frame.getFrame().add(board.getBoard());
+        frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
+
+        // dodanie output do ekranu
+        frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
         frame.getFrame().setVisible(true);
 
         // umożliwa poprawne zczytywanie keyListner'a
@@ -84,7 +104,7 @@ public class Main{
         while(currentRow < 10 && !computer.didWon()){
 
             // opoznienie dla poprawnego dzialania keyListener'a
-            TimeUnit.MILLISECONDS.sleep(100);
+            TimeUnit.MILLISECONDS.sleep(500);
 
             // sprawdzanie czy odpowiedź została zatwierdzona
             if(keyListener.submitted){ 
@@ -124,12 +144,20 @@ public class Main{
                     
 
 
+                    
+
+
+                    outputRow[currentRow].addColors(computer.getOutput(), true);
+                    frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
+                    
+
+
                     // dodanie do wiersza zatwierdzonych kolorów, oraz ich wyświetlenie
-                    rowArray[currentRow].addColors(submittedColors);
-                    frame.getFrame().add(board.getBoard());
-                    frame.getFrame().setVisible(true);
+                    rowArray[currentRow].addColors(submittedColors, false);
+                    frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
                     board.getBoard().requestFocus(true);
 
+                    frame.getFrame().setVisible(true);
 
                     // aktualizacja indeksu wiersza
                     currentRow++;

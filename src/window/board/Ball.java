@@ -9,14 +9,15 @@ public class Ball {
 
     // satłe
     final static protected int SIZE = 36;
-    final static protected int SPECIAL_SIZE = 20;
+    final static protected int SPECIAL_SIZE = 30;
 
     JLabel ball;
 
 
 
     // grafiki kolorów
-    final static private ImageIcon BLACK = new ImageIcon(new ImageIcon("./img/black.png").getImage().getScaledInstance(SPECIAL_SIZE, SPECIAL_SIZE, Image.SCALE_SMOOTH));
+    final static private ImageIcon EMPTY = new ImageIcon(new ImageIcon("./img/empty.png").getImage().getScaledInstance(SPECIAL_SIZE, SPECIAL_SIZE, Image.SCALE_DEFAULT));
+    final static private ImageIcon BLACK = new ImageIcon(new ImageIcon("./img/black.png").getImage().getScaledInstance(SPECIAL_SIZE, SPECIAL_SIZE, Image.SCALE_DEFAULT));
     final static private ImageIcon WHITE = new ImageIcon(new ImageIcon("./img/white.png").getImage().getScaledInstance(SPECIAL_SIZE, SPECIAL_SIZE, Image.SCALE_DEFAULT));
     final static private ImageIcon RED = new ImageIcon(new ImageIcon("./img/red.png").getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT));
     final static private ImageIcon ORANGE = new ImageIcon(new ImageIcon("./img/orange.png").getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT));
@@ -32,14 +33,27 @@ public class Ball {
     final static protected ImageIcon[] colors = {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, PINK};
 
 
+    final static protected ImageIcon[] outputColors = {EMPTY, WHITE, BLACK};
+
+
     // konstruktor (towrzy JLabel zawierający odpowienią grafikę)
-    public Ball(int index){
+    public Ball(int index, boolean output){
+
         ball = new JLabel();
-        ball.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
         ball.setBackground(null);
         ball.setOpaque(true);
-        ball.setIcon(Ball.colors[index]);
+
+        if(!output){
+            ball.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
+            ball.setIcon(Ball.colors[index]);
+        }
+        else{
+            ball.setPreferredSize(new Dimension(Ball.SPECIAL_SIZE, Ball.SPECIAL_SIZE));
+            ball.setIcon(Ball.outputColors[index]);
+        }
+
         ball.setVisible(true);
+        
     }
 
 

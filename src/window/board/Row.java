@@ -3,6 +3,8 @@ package window.board;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -11,14 +13,16 @@ import javax.swing.JPanel;
 public class Row {
 
     // zdefiniowane kolory
-    final private Color GRAY = new Color(0x46494C);
-    final private Color DARK_GRAY = new Color(0x252422);
+    final private Color GRAY = new Color(0xD6E5E3);
+    final private Color DARK_GRAY = new Color(0xCACFD6);
 
     // stałe
     final private int BORDER_THICKNESS = 3;
     final private int HEIGHT = Board.HEIGHT/Board.ROWS;
-    final private int H_GAP = 50;
-    final private int V_GAP = (HEIGHT - Ball.SIZE) / 2 - (2 * BORDER_THICKNESS);
+    final private int H_GAP_BOARD = 50;
+    final private int H_GAP_OUTPUT = 15;
+    final private int V_GAP_BOARD = (HEIGHT - 2*BORDER_THICKNESS - Ball.SIZE) / 2;  
+    final private int V_GAP_OUTPUT = (HEIGHT - 2*BORDER_THICKNESS - Ball.SPECIAL_SIZE) / 2;  
 
 
     // zmienne
@@ -28,12 +32,24 @@ public class Row {
 
     
     // konstruktor (tworzy JPanel)
-    public Row(){
+    public Row(boolean output){
+
+        System.out.println(HEIGHT);
+
         container = new JPanel();
-        container.setPreferredSize(new Dimension(Board.WIDTH, Board.HEIGHT/Board.ROWS));
-        container.setBackground(GRAY);
-        container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP, V_GAP));
-        container.setBorder(BorderFactory.createLineBorder(DARK_GRAY, BORDER_THICKNESS, false));
+        container.setPreferredSize(new Dimension(Board.WIDTH, HEIGHT));
+        
+
+        if(!output){
+            container.setBackground(GRAY);
+            container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP_BOARD, V_GAP_BOARD));
+            container.setBorder(BorderFactory.createLineBorder(DARK_GRAY, BORDER_THICKNESS, false));
+        }
+        else{
+            container.setBackground(DARK_GRAY);
+            container.setLayout(new FlowLayout(FlowLayout.CENTER, H_GAP_OUTPUT, V_GAP_OUTPUT));
+            container.setBorder(BorderFactory.createLineBorder(GRAY, BORDER_THICKNESS, false));
+        }
     }
 
 
@@ -59,9 +75,9 @@ public class Row {
 
 
     // dodanie/zaktualizowanie kolorów na podstawie tablicy z indeksami
-    public void addColors(int[] index){
+    public void addColors(int[] index, boolean output){
         for(int i = 0; i < 4; i++){
-            balls[i] = new Ball(index[i]);
+            balls[i] = new Ball(index[i], output);
             this.container.add(balls[i].getBall());
         }
     }
