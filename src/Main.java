@@ -37,12 +37,8 @@ public class Main{
         Description description = new Description();
         User user = null;
         int gamemode = -1;
-
-
-
-
-//         *    Dodać prostą instrukcję obsługi i zasady gry
-//         *    Dodać możliwość wyboru trybu (inny sposób prezentowania odpowiedzi, uproszczony lub normalny) 
+        long time = 0;
+        int score = 0;
 
 
 
@@ -116,15 +112,17 @@ public class Main{
         }
         description.killDescription(frame);
 
-        
+
 
         // sekcja 3
         // gra
 
         while(gamemode != -1){
-            // tworzenie kombinacji kolorów, wyświetlanie ich na samej górze
+
+            // tworzenie kombinacji kolorow
             computer.generate();
-            first.addColors(computer.getGeneratedColors(), false);
+
+            // pusty rzad na gorze
             board.getBoard().add(first.getRow());
 
 
@@ -145,7 +143,6 @@ public class Main{
             output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
 
 
-            
             // dodanie przycisków do wyboru kolorów (na samym dole)
             last.addButtons();
             board.getBoard().add(last.getRow());
@@ -166,15 +163,20 @@ public class Main{
             // umożliwa poprawne zczytywanie keyListner'a
             board.getBoard().requestFocus(true);
 
+            // usun
+            first.addColors(computer.getGeneratedColors(), false);
+            frame.getFrame().setVisible(true);
 
 
+            // sekcja 4
+            // rozgrywka
 
-
-
+            time = System.currentTimeMillis();
             while(currentRow < 10 && !computer.didWon()){
 
                 // opoznienie dla poprawnego dzialania keyListener'a
-                TimeUnit.MILLISECONDS.sleep(50);
+                TimeUnit.MILLISECONDS.sleep(100);
+
 
                 // sprawdzanie czy odpowiedź została zatwierdzona
                 if(keyListener.submitted){ 
@@ -190,6 +192,8 @@ public class Main{
                     System.out.println();
 
 
+
+
                     // przesałanie odpowiedzi w celu podjęcia dalszych kroków
                     computer.setInput(submittedColors);
 
@@ -201,22 +205,19 @@ public class Main{
                         computer.check();
 
 
+
+
                         // wyświetlenie odpowiedzi
 
                         // tryb normalny
-                        computer.sort();
-
-
+                        if(gamemode == 1){
+                            computer.sort();
+                        }
+                        
                         for(int i : computer.getOutput())
                             System.out.printf("%d ", i);
                         System.out.println(computer.didWon());
 
-
-
-                        // wyświetlenie wygenerowanych kolorów (tych do zgadnięcia)
-                        for(int i : computer.getGeneratedColors())
-                            System.out.printf("%d ", i);
-                        System.out.println();
                         
 
                         // wyświetlenie odpowiedzi po prawej stronie
@@ -240,7 +241,27 @@ public class Main{
                     // reset keyListener'a
                     keyListener.submitted = false;
                 }
-            }   
+            }
+            // wyświetlenie wygenerowanych kolorów (tych do zgadnięcia)
+            for(int i : computer.getGeneratedColors())
+                System.out.printf("%d ", i);
+            System.out.println();
+
+            first.addColors(computer.getGeneratedColors(), false);
+            frame.getFrame().setVisible(true);
+
+            // statystyki gracza
+            user.gamesPlayed++;
+            score = 10 - currentRow;
+            time = System.currentTimeMillis() - time;
+            System.out.println(time);
+
+            user.updateStats(score, (int)time);
+            String path = "./all_users/" + user.name + ".txt";
+            File file = new File(path);
+            user.save(file);
+
+            gamemode = -1;
         }
     }
 }

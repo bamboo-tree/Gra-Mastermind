@@ -13,7 +13,7 @@ public class User {
     FileWriter writer;
     Scanner reader;
 
-
+    // tworzenie lub wczytywanie gracza (pliku)
     public User(File userData) throws IOException {
         if(userData.length() == 0){
             System.out.println(1);
@@ -42,7 +42,7 @@ public class User {
         printUserInfo();
     }
 
-
+    // wypisanie statystyk
     public void printUserInfo(){
         System.out.println("name : " + this.name);
         System.out.println("best score : " + this.bestScore);
@@ -50,6 +50,7 @@ public class User {
         System.out.println("games played : " + this.gamesPlayed);
     }
 
+    // sprawdzenie poprawnosci nazwy
     public static boolean checkSpelling(String name){
         char[] array = name.toCharArray();
         for(char c : array){
@@ -60,12 +61,32 @@ public class User {
         return true;
     }
 
+    // aktualizowanie najlepszych osiagniec
+    public void updateStats(int score, long time){
+        if(score > bestScore){
+            bestScore = score;
+        }
+        if(time < bestTime || bestTime < 0){
+            bestTime = time;
+        }
+    }
+
+
+    public void save(File userData) throws IOException{
+        writer = new FileWriter(userData);
+        writer.write("NAME:" + this.name + "\n");
+        writer.write("BEST_SCORE:" + this.bestScore + "\n");
+        writer.write("BEST_TIME:" + (int)this.bestTime + "\n");
+        writer.write("GAMES_PLAYED:" + this.gamesPlayed);
+        writer.close();
+    }
+
+
+
+    // getter
     public String getName() {
         return name;
     }
 
-    public void updateGames(){
-        this.gamesPlayed++;
-    }
 }
 

@@ -55,7 +55,7 @@ public class WelcomeScreen {
         JLabel info = new JLabel();
         info.setPreferredSize(new Dimension(WIDTH, 50));
         info.setText("Maciej Kamiński 2023");
-        info.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        info.setFont(new Font("Century Gothic", Font.PLAIN, 16));
         info.setHorizontalAlignment(JLabel.CENTER);
         info.setOpaque(true);
         info.setBackground(BLACK);
@@ -71,7 +71,7 @@ public class WelcomeScreen {
         // zachęta
         JLabel text = new JLabel();
         text.setText("◄ Enter username ►");
-        text.setFont(new Font("Century Gothic", Font.BOLD, 32));
+        text.setFont(new Font("Century Gothic", Font.BOLD, 36));
         text.setHorizontalAlignment(JLabel.CENTER);
         text.setOpaque(true);
         text.setBackground(WHITE);
@@ -81,7 +81,7 @@ public class WelcomeScreen {
         // pole tekstowe pod nazwę użytkownika
         usernameInput = new JTextField();
         usernameInput.setToolTipText("username should contain letters and digits: A-Z, a-z, 0-9 spaces and other special characters are unallowed");
-        usernameInput.setFont(new Font("Century Gothic", Font.BOLD, 24));
+        usernameInput.setFont(new Font("Century Gothic", Font.BOLD, 30));
         usernameInput.setHorizontalAlignment(SwingConstants.CENTER);
         usernameInput.setBackground(WHITE);
         usernameInput.setForeground(BLACK);
@@ -91,7 +91,7 @@ public class WelcomeScreen {
         // pamiętaj o ładnej nazwie użytkownika <3
         userInfo = new JLabel();
         userInfo.setText("remember to make it pretty :D");
-        userInfo.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        userInfo.setFont(new Font("Century Gothic", Font.BOLD, 18));
         userInfo.setHorizontalAlignment(JLabel.CENTER);
         userInfo.setOpaque(true);
         userInfo.setBackground(WHITE);

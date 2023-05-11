@@ -50,7 +50,7 @@ public class Description {
         rules.setBackground(BLACK);
         rules.setForeground(WHITE);
         rules.setText(text);
-        rules.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        rules.setFont(new Font("Century Gothic", Font.BOLD, 20));
         rules.setHorizontalAlignment(JLabel.CENTER);
         rules.setOpaque(true);
 
@@ -71,7 +71,7 @@ public class Description {
 
         JLabel easyLabel = new JLabel();
         easyLabel.setText("◄      E A S Y");
-        easyLabel.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        easyLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
         easyLabel.setHorizontalAlignment(JLabel.CENTER);
         easyLabel.setOpaque(true);
         easyLabel.setBackground(null);
@@ -101,7 +101,7 @@ public class Description {
 
         JLabel normalLabel = new JLabel();
         normalLabel.setText("N O R M A L      ►");
-        normalLabel.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        normalLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
         normalLabel.setHorizontalAlignment(JLabel.CENTER);
         normalLabel.setOpaque(true);
         normalLabel.setBackground(null);
