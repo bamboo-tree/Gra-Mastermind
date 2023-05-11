@@ -14,8 +14,8 @@ import javax.swing.WindowConstants;
 public class Frame {
     
     // stałe
-    final private int WIDTH = 900;
-    final private int HEIGHT = 700;
+    final protected int WIDTH = 900;
+    final protected int HEIGHT = 700;
     final private JFrame myFrame;
 
 
@@ -39,4 +39,5 @@ public class Frame {
     public JFrame getFrame(){
         return myFrame;
     }
+
 }

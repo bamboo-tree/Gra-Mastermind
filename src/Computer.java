@@ -12,10 +12,12 @@ public class Computer {
 
 
 
+
     // zmienne pomocnicze
     private int[] generatedColors = new int[4];
     private int[] output = {-1, -1, -1, -1};
     private int[] input = {-1, -1, -1, -1};
+    final public int DELAY = 50;
 
 
 

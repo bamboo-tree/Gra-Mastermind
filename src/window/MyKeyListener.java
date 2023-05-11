@@ -7,6 +7,7 @@ public class MyKeyListener implements KeyListener{
 
     // zmienna określa, czy odpowiedź została zatwierdzona
     public boolean submitted = false;
+    public int code = -1;
 
 
     @Override
@@ -19,7 +20,7 @@ public class MyKeyListener implements KeyListener{
             System.out.println("submit");
             this.submitted = true;
         }
-        System.out.println(e.getKeyCode());
+        code = e.getKeyCode();
     }
 
     @Override
