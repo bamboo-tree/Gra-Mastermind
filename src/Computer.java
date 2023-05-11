@@ -52,6 +52,20 @@ public class Computer {
     }
 
 
+    public void sort(){
+        for(int i = 0; i < 4; i++){
+            for(int j = i; j < 4; j++){
+                if(output[i] < output[j]){
+                    int temp = output[i];
+                    output[i] = output[j];
+                    output[j] = temp;
+                }
+            }
+        }
+    }
+
+
+
     // sprawdza poprawność przesłanej odpowiedzi: 0 - nie ma, 1 - w zlym miejscu, 2 - na dobrym miejscu
     public void check(){
         // tworzenie tablicy, przechowującej inforamcję, czy kolor zostal już sprawdzony

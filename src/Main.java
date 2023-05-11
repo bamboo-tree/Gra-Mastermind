@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
+
 import window.*;
 import window.board.*;
+import window.guide.Description;
 import window.welcome_screen.WelcomeScreen;;
 
 public class Main{
@@ -28,9 +30,14 @@ public class Main{
         Row[] outputRow = new Row[10];
 
 
-        // 
+        // inne
         WelcomeScreen welcomeScreen = new WelcomeScreen();
+        MyActionListener easy = new MyActionListener(null);
+        MyActionListener normal = new MyActionListener(null);
+        Description description = new Description();
         User user = null;
+        int gamemode = -1;
+
 
 
 
@@ -84,135 +91,156 @@ public class Main{
                 }
             }
         }
-        System.out.println("wyszlo");
-
         welcomeScreen.killWelcomeScreen(frame);
 
 
 
+        // sekcja 2
+        // krotki opis
+        // wybor trybu gry
 
-
-        
-
-
-
-
-        // tworzenie kombinacji kolorów, wyświetlanie ich na samej górze
-        computer.generate();
-        first.addColors(computer.getGeneratedColors(), false);
-        board.getBoard().add(first.getRow());
-
-
-        // dodanie pustego rzedu na gorze output
-        output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
-
-
-        // tworzenie rzędów w których będą kolejne odpowiedzi gracza
-        for(int i = 9; i >= 0; i--){
-            rowArray[i] = new Row(false, computer.GRAY, computer.BLACK);
-            board.getBoard().add(rowArray[i].getRow());
-
-            outputRow[i] = new Row(true, computer.LIGHT, computer.BLACK);
-            output.getOutput().add(outputRow[i].getRow());
-        }
-
-        // dodanie pustego rzedu na dole output
-        output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
-
-
-        
-        // dodanie przycisków do wyboru kolorów (na samym dole)
-        last.addButtons();
-        board.getBoard().add(last.getRow());
-        board.getBoard().addKeyListener(keyListener);
-        for(int i = 0; i < 4; i++){
-            last.buttons[i].getButton().addActionListener(new MyActionListener(last.buttons[i]));
-        }
-
-
-
-        // dodanie board do ekranu
-        frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
-
-        // dodanie output do ekranu
-        frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
+        frame.getFrame().add(description.getDescription(), BorderLayout.CENTER);
         frame.getFrame().setVisible(true);
 
-        // umożliwa poprawne zczytywanie keyListner'a
-        board.getBoard().requestFocus(true);
+        description.getEasyButton().addActionListener(easy);
+        description.getNormalButton().addActionListener(normal);
+
+        while(gamemode == -1){
+            TimeUnit.MILLISECONDS.sleep(100);
+            if(easy.click){
+                gamemode = 0;
+            }
+            else if(normal.click){
+                gamemode = 1;
+            }
+        }
+        description.killDescription(frame);
+
+        
+
+        // sekcja 3
+        // gra
+
+        while(gamemode != -1){
+            // tworzenie kombinacji kolorów, wyświetlanie ich na samej górze
+            computer.generate();
+            first.addColors(computer.getGeneratedColors(), false);
+            board.getBoard().add(first.getRow());
+
+
+            // dodanie pustego rzedu na gorze output
+            output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
+
+
+            // tworzenie rzędów w których będą kolejne odpowiedzi gracza
+            for(int i = 9; i >= 0; i--){
+                rowArray[i] = new Row(false, computer.GRAY, computer.BLACK);
+                board.getBoard().add(rowArray[i].getRow());
+
+                outputRow[i] = new Row(true, computer.LIGHT, computer.BLACK);
+                output.getOutput().add(outputRow[i].getRow());
+            }
+
+            // dodanie pustego rzedu na dole output
+            output.getOutput().add(new Row(true, computer.DARK, computer.BLACK).getRow());
+
+
+            
+            // dodanie przycisków do wyboru kolorów (na samym dole)
+            last.addButtons();
+            board.getBoard().add(last.getRow());
+            board.getBoard().addKeyListener(keyListener);
+            for(int i = 0; i < 4; i++){
+                last.buttons[i].getButton().addActionListener(new MyActionListener(last.buttons[i]));
+            }
+
+
+
+            // dodanie board do ekranu
+            frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
+
+            // dodanie output do ekranu
+            frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
+            frame.getFrame().setVisible(true);
+
+            // umożliwa poprawne zczytywanie keyListner'a
+            board.getBoard().requestFocus(true);
 
 
 
 
 
 
-        while(currentRow < 10 && !computer.didWon()){
+            while(currentRow < 10 && !computer.didWon()){
 
-            // opoznienie dla poprawnego dzialania keyListener'a
-            TimeUnit.MILLISECONDS.sleep(50);
+                // opoznienie dla poprawnego dzialania keyListener'a
+                TimeUnit.MILLISECONDS.sleep(50);
 
-            // sprawdzanie czy odpowiedź została zatwierdzona
-            if(keyListener.submitted){ 
-                
-                // zapisanie indeksów kolorów w tablicy
-                for(int i = 0; i < 4; i++)
-                    submittedColors[i] = last.getButton(i);
-                
+                // sprawdzanie czy odpowiedź została zatwierdzona
+                if(keyListener.submitted){ 
+                    
+                    // zapisanie indeksów kolorów w tablicy
+                    for(int i = 0; i < 4; i++)
+                        submittedColors[i] = last.getButton(i);
+                    
 
-                // wyświetlenie tablicy z odpowiedzią
-                for(int i : submittedColors)
-                    System.out.printf("%d ", i);
-                System.out.println();
-
-
-                // przesałanie odpowiedzi w celu podjęcia dalszych kroków
-                computer.setInput(submittedColors);
-
-
-                // sprawdza czy kolory się nie powtarzają, jeżeli tak trzeba poprawić swoją odpowiedź
-                if(!computer.colorsRepeat()){
-
-                    // porównanie odpowiedzi ze wzorcem
-                    computer.check();
-
-                    // wyświetlenie odpowiedzi
-                    for(int i : computer.getOutput())
-                        System.out.printf("%d ", i);
-                    System.out.println(computer.didWon());
-
-
-
-                    // wyświetlenie wygenerowanych kolorów (tych do zgadnięcia)
-                    for(int i : computer.getGeneratedColors())
+                    // wyświetlenie tablicy z odpowiedzią
+                    for(int i : submittedColors)
                         System.out.printf("%d ", i);
                     System.out.println();
-                    
-
-                    // wyświetlenie odpowiedzi po prawej stronie
-                    outputRow[currentRow].addColors(computer.getOutput(), true);
-                    frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
-                    
 
 
-                    // dodanie do wiersza zatwierdzonych kolorów, oraz ich wyświetlenie
-                    rowArray[currentRow].addColors(submittedColors, false);
-                    frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
-                    board.getBoard().requestFocus(true);
+                    // przesałanie odpowiedzi w celu podjęcia dalszych kroków
+                    computer.setInput(submittedColors);
 
-                    frame.getFrame().setVisible(true);
 
-                    // aktualizacja indeksu wiersza
-                    currentRow++;
+                    // sprawdza czy kolory się nie powtarzają, jeżeli tak trzeba poprawić swoją odpowiedź
+                    if(!computer.colorsRepeat()){
+
+                        // porównanie odpowiedzi ze wzorcem
+                        computer.check();
+
+
+                        // wyświetlenie odpowiedzi
+
+                        // tryb normalny
+                        computer.sort();
+
+
+                        for(int i : computer.getOutput())
+                            System.out.printf("%d ", i);
+                        System.out.println(computer.didWon());
+
+
+
+                        // wyświetlenie wygenerowanych kolorów (tych do zgadnięcia)
+                        for(int i : computer.getGeneratedColors())
+                            System.out.printf("%d ", i);
+                        System.out.println();
+                        
+
+                        // wyświetlenie odpowiedzi po prawej stronie
+                        outputRow[currentRow].addColors(computer.getOutput(), true);
+                        frame.getFrame().add(output.getOutput(), BorderLayout.EAST);
+                        
+
+
+                        // dodanie do wiersza zatwierdzonych kolorów, oraz ich wyświetlenie
+                        rowArray[currentRow].addColors(submittedColors, false);
+                        frame.getFrame().add(board.getBoard(), BorderLayout.CENTER);
+                        board.getBoard().requestFocus(true);
+
+                        frame.getFrame().setVisible(true);
+
+                        // aktualizacja indeksu wiersza
+                        currentRow++;
+                    }
+
+
+                    // reset keyListener'a
+                    keyListener.submitted = false;
                 }
-
-
-                // reset keyListener'a
-                keyListener.submitted = false;
-            }
-        }   
-        
-        
-
-        
+            }   
+        }
     }
 }
