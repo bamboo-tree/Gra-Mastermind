@@ -14,9 +14,10 @@ public class User {
 
     private String name;
     private int bestScore;
+    private int score;
     private int gamesPlayed;
     private float bestTime;
-
+    private float time;
 
     private FileWriter writer;
     private Scanner reader;
@@ -80,11 +81,14 @@ public class User {
 
     // aktualizowanie najlepszych osiagniec
     public void updateStats(int score, long time){
-        if(score > bestScore)
-            this.bestScore = score;
+        this.score = score;
+        this.time = time;
 
-        if(time < bestTime || bestTime < 0)
-            this.bestTime = time;
+        if(this.score > this.bestScore)
+            this.bestScore = this.score;
+
+        if(this.time < this.bestTime || this.bestTime < 0)
+            this.bestTime = this.time;
     }
 
 
@@ -110,6 +114,26 @@ public class User {
     // getter
     public String getName() {
         return this.name;
+    }
+
+    public float getBestTime(){
+        return this.bestTime;
+    }
+
+    public float getTime(){
+        return this.time;
+    }
+
+    public int getBestScore(){
+        return this.bestScore;
+    }
+
+    public int getScore(){
+        return this.score;
+    }
+
+    public int getGamesPlayed(){
+        return gamesPlayed;
     }
 
 

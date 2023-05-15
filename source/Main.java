@@ -213,10 +213,6 @@ public class Main{
                         computer.check();
 
 
-
-
-                        // wyświetlenie odpowiedzi
-
                         // tryb normalny
                         if(gamemode == 1){
                             computer.sort();
@@ -269,14 +265,24 @@ public class Main{
             File file = new File(path);
             user.save(file);
 
+
             gamemode = -1;
         }
 
 
-        //
         board.killBoard(frame);
         output.killOutput(frame);
+
+
+        endScreen.createText(user);
+        endScreen.setResultText(currentRow < 10);
+
+        endScreen.getResult().setText(endScreen.getResultText());
+        endScreen.getStats().setText(endScreen.getStatsText());
+        endScreen.getStats().setVisible(true);
+
         frame.getFrame().add(endScreen.getEndScreen(), BorderLayout.CENTER);
         frame.getFrame().setVisible(true);
+        
     }
 }
