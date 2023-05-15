@@ -17,8 +17,8 @@ import source.window.Frame;
 
 public class Description {
 
-    final private ImageIcon EASY = new ImageIcon(new ImageIcon("./img/easy_mode.png").getImage().getScaledInstance(120, 25, Image.SCALE_DEFAULT));
-    final private ImageIcon NORMAL = new ImageIcon(new ImageIcon("./img/normal_mode.png").getImage().getScaledInstance(120, 25, Image.SCALE_DEFAULT));
+    final private ImageIcon EASY = new ImageIcon(new ImageIcon("./img/easy_mode.png").getImage().getScaledInstance(160, 40, Image.SCALE_DEFAULT));
+    final private ImageIcon NORMAL = new ImageIcon(new ImageIcon("./img/normal_mode.png").getImage().getScaledInstance(160, 40, Image.SCALE_DEFAULT));
 
 
 

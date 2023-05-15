@@ -40,8 +40,10 @@ public class Main{
         // inne
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         EndScreen endScreen = new EndScreen();
-        MyActionListener easy = new MyActionListener(null);
-        MyActionListener normal = new MyActionListener(null);
+        MyActionListener easy = new MyActionListener();
+        MyActionListener normal = new MyActionListener();
+        MyActionListener again = new MyActionListener();
+        MyActionListener exit = new MyActionListener();
         Description description = new Description();
         User user = null;
         int gamemode = -1;
@@ -124,6 +126,12 @@ public class Main{
 
         // sekcja 3
         // gra
+
+
+        // dodanie ActionListener'a do okna koncowego
+        endScreen.getEndGameButton().getButton().addActionListener(exit);
+        endScreen.getEndGameButton().getButton().addActionListener(again);
+
 
         while(gamemode != -1){
 
@@ -260,6 +268,7 @@ public class Main{
             time = System.currentTimeMillis() - time;
             System.out.println(time);
 
+            // aktualizacja statystyk
             user.updateStats(score, (int)time);
             String path = "./all_users/" + user.getName() + ".txt";
             File file = new File(path);
@@ -267,22 +276,36 @@ public class Main{
 
 
             gamemode = -1;
+
+
+
+            // usuniecie planszy
+            board.killBoard(frame);
+            output.killOutput(frame);
+
+
+            // zaktualizowanie pol tekstowych
+            endScreen.createText(user);
+            endScreen.setResultText(currentRow < 10);
+
+            endScreen.getResult().setText(endScreen.getResultText());
+            endScreen.getStats().setText(endScreen.getStatsText());
+            endScreen.getStats().setVisible(true);
+
+
+            // dodanie komponentow do JFrame'a
+            frame.getFrame().add(endScreen.getEndScreen(), BorderLayout.CENTER);
+            frame.getFrame().setVisible(true);
+
+            while(true){
+                TimeUnit.MILLISECONDS.sleep(100);
+                if(exit.getClick()){
+                    System.exit(0);
+                }
+                if(again.getClick()){
+                    
+                }
+            }
         }
-
-
-        board.killBoard(frame);
-        output.killOutput(frame);
-
-
-        endScreen.createText(user);
-        endScreen.setResultText(currentRow < 10);
-
-        endScreen.getResult().setText(endScreen.getResultText());
-        endScreen.getStats().setText(endScreen.getStatsText());
-        endScreen.getStats().setVisible(true);
-
-        frame.getFrame().add(endScreen.getEndScreen(), BorderLayout.CENTER);
-        frame.getFrame().setVisible(true);
-        
     }
 }

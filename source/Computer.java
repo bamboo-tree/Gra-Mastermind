@@ -123,6 +123,8 @@ public class Computer {
     }
 
 
+    
+
 
     // gettery
     public int[] getGeneratedColors(){
