@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import window.*;
 import window.board.*;
+import window.end_screen.EndScreen;
 import window.guide.Description;
 import window.welcome_screen.WelcomeScreen;;
 
@@ -32,6 +33,7 @@ public class Main{
 
         // inne
         WelcomeScreen welcomeScreen = new WelcomeScreen();
+        EndScreen endScreen = new EndScreen();
         MyActionListener easy = new MyActionListener(null);
         MyActionListener normal = new MyActionListener(null);
         Description description = new Description();
@@ -263,5 +265,12 @@ public class Main{
 
             gamemode = -1;
         }
+
+
+        //
+        board.killBoard(frame);
+        output.killOutput(frame);
+        frame.getFrame().add(endScreen.getEndScreen(), BorderLayout.CENTER);
+        frame.getFrame().setVisible(true);
     }
 }

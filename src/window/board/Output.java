@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 
+import window.Frame;
+
 public class Output {
 
 
@@ -23,6 +25,12 @@ public class Output {
         myOutput.setBackground(Color.BLACK);
     }
 
+    public void killOutput(Frame frame){
+        frame.getFrame().getContentPane().remove(myOutput);
+        frame.getFrame().invalidate();
+        frame.getFrame().validate();
+        frame.getFrame().setVisible(true);
+    }
 
     // getter
     public JPanel getOutput(){

@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 
+import window.Frame;
+
 
 
 public class Board {
@@ -30,5 +32,13 @@ public class Board {
     // getter
     public JPanel getBoard(){
         return myBoard;
+    }
+
+
+    public void killBoard(Frame frame){
+        frame.getFrame().getContentPane().remove(myBoard);
+        frame.getFrame().invalidate();
+        frame.getFrame().validate();
+        frame.getFrame().setVisible(true);
     }
 }
