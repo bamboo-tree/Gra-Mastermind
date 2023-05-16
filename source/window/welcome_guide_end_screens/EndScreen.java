@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import source.User;
+import source.window.Frame;
 
 
 
@@ -107,6 +108,14 @@ public class EndScreen {
         }
     }
 
+
+    // usuwanie zawartosci z okna
+    public void killEndScreen(Frame frame){
+        frame.getFrame().getContentPane().remove(myEndScreen);
+        frame.getFrame().invalidate();
+        frame.getFrame().validate();
+        frame.getFrame().setVisible(true);
+    }
 
 
     // gettery

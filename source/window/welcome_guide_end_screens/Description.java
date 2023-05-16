@@ -2,6 +2,7 @@ package source.window.welcome_guide_end_screens;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,8 +18,8 @@ import source.window.Frame;
 
 public class Description {
 
-    final private ImageIcon EASY = new ImageIcon(new ImageIcon("./img/easy_mode.png").getImage().getScaledInstance(160, 40, Image.SCALE_DEFAULT));
-    final private ImageIcon NORMAL = new ImageIcon(new ImageIcon("./img/normal_mode.png").getImage().getScaledInstance(160, 40, Image.SCALE_DEFAULT));
+    final private ImageIcon EASY = new ImageIcon(new ImageIcon("./img/easy_mode.png").getImage().getScaledInstance(120, 30, Image.SCALE_DEFAULT));
+    final private ImageIcon NORMAL = new ImageIcon(new ImageIcon("./img/normal_mode.png").getImage().getScaledInstance(120, 30, Image.SCALE_DEFAULT));
 
 
 
@@ -33,7 +34,7 @@ public class Description {
 
         // ustawianie JPanelu
         this.myDescription = new JPanel();
-        this.myDescription.setLayout(new BorderLayout());
+        this.myDescription.setLayout(new BorderLayout(0,0));
         this.myDescription.setFocusable(true);
 
 
@@ -46,64 +47,85 @@ public class Description {
             MyJLabel.BLACK, 
             JLabel.CENTER
         );
-        this.myDescription.add(rules.getMyJLabel(), BorderLayout.NORTH);
+        this.myDescription.add(rules.getMyJLabel(), BorderLayout.CENTER);
 
 
 
         // przyciski z trybami gry
-        //latwy
-        JPanel easyPanel = new JPanel();
-        easyPanel.setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
-        easyPanel.setLayout(new BorderLayout(10, 10));
-        easyPanel.setBackground(MyJLabel.BLACK);
+        JPanel buttons = new JPanel();
+        buttons.setPreferredSize(new Dimension(MyJLabel.WIDTH, 150));
+        buttons.setLayout(new GridLayout(1,2));
+        buttons.setBackground(MyJLabel.BLACK);
 
+
+        //latwy
         MyJLabel easyLabel = new MyJLabel(
-            "◄      E A S Y", 
-            null, 
-            18, 
-            MyJLabel.GREEN, 
+            "E A S Y", 
+            new Dimension(MyJLabel.WIDTH, 150), 
+            24, 
+            MyJLabel.BLACK, 
             null, 
             JLabel.CENTER
         );
 
+        // dodanie tekstu i grafiki do przycisku
+        easyLabel.getMyJLabel().setIcon(EASY);
+        easyLabel.getMyJLabel().setVerticalTextPosition(JLabel.TOP);
+        easyLabel.getMyJLabel().setHorizontalTextPosition(JLabel.CENTER);
+        easyLabel.getMyJLabel().setIconTextGap(10);
+
         this.easyButton = new Button();
-        this.easyButton.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/4, MyJLabel.HEIGHT));
-        this.easyButton.getButton().setIcon(EASY);
+        this.easyButton.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
+        this.easyButton.getButton().setOpaque(true);
+        this.easyButton.getButton().setBackground(MyJLabel.GREEN);
         this.easyButton.getButton().setHorizontalAlignment(JLabel.CENTER);
         this.easyButton.getButton().setVerticalAlignment(JLabel.CENTER);
+        this.easyButton.getButton().setLayout(new BorderLayout());
+        this.easyButton.getButton().add(easyLabel.getMyJLabel(), BorderLayout.NORTH);
         
-        easyPanel.add(this.easyButton.getButton(), BorderLayout.WEST);
-        easyPanel.add(easyLabel.getMyJLabel(), BorderLayout.CENTER);
-        this.myDescription.add(easyPanel, BorderLayout.WEST);
-        easyPanel.setVisible(true);
+        
+        // dodanie do JPanel'u
+        buttons.add(this.easyButton.getButton());
+        this.myDescription.add(buttons, BorderLayout.WEST);
         
 
 
 
         //normalny
-        JPanel normalPanel = new JPanel();
-        normalPanel.setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
-        normalPanel.setLayout(new BorderLayout(10, 10));    ////////////////////////////////////////////////
-        normalPanel.setBackground(MyJLabel.BLACK);
-
         MyJLabel normalLabel = new MyJLabel(
-            "N O R M A L      ►", 
-            null, 
-            18, 
-            MyJLabel.RED, 
+            "N O R M A L", 
+            new Dimension(MyJLabel.WIDTH, 150), 
+            24, 
+            MyJLabel.BLACK, 
             null, 
             JLabel.CENTER
         );
+
+        // dodanie tekstu i grafiki do przycisku
+        normalLabel.getMyJLabel().setIcon(NORMAL);
+        normalLabel.getMyJLabel().setVerticalTextPosition(JLabel.TOP);
+        normalLabel.getMyJLabel().setHorizontalTextPosition(JLabel.CENTER);
+        normalLabel.getMyJLabel().setIconTextGap(10);
         
         this.normalButton = new Button();
-        this.normalButton.getButton().setIcon(NORMAL);
-        this.normalButton.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/4, MyJLabel.HEIGHT));
+        this.normalButton.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
+        this.normalButton.getButton().setOpaque(true);
+        this.normalButton.getButton().setBackground(MyJLabel.BLUE);
         this.normalButton.getButton().setHorizontalAlignment(JLabel.CENTER);
         this.normalButton.getButton().setVerticalAlignment(JLabel.CENTER);
+        this.normalButton.getButton().setLayout(new BorderLayout());
+        this.normalButton.getButton().add(normalLabel.getMyJLabel(), BorderLayout.NORTH);
 
-        normalPanel.add(this.normalButton.getButton(), BorderLayout.EAST);
-        normalPanel.add(normalLabel.getMyJLabel(), BorderLayout.CENTER);
-        this.myDescription.add(normalPanel, BorderLayout.EAST);
+
+        // dodanie do JPanel'u
+        buttons.add(this.normalButton.getButton());
+        this.myDescription.add(buttons, BorderLayout.EAST);
+        
+
+
+        // dodanie do opisu
+        buttons.setVisible(true);
+        this.myDescription.add(buttons, BorderLayout.SOUTH);
     }
 
 

@@ -1,3 +1,4 @@
+/*/
 package source;
 
 import java.awt.BorderLayout;
@@ -22,8 +23,7 @@ public class Main{
 
         // tworzenie obiektów
         Frame frame = new Frame();
-        Board board = new Board();
-        Output output = new Output();
+        
         Computer computer = new Computer();
         MyKeyListener keyListener = new MyKeyListener();
 
@@ -309,3 +309,4 @@ public class Main{
         }
     }
 }
+*/
