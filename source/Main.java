@@ -48,6 +48,12 @@ public class Main {
             */
 
 
+        // tworzenie folderu pod graczy
+        File theDir = new File("./all_users");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        
 
 
         // dodanie okna powitalnego do Frame'a
@@ -62,7 +68,7 @@ public class Main {
            TimeUnit.MILLISECONDS.sleep(100);
 
            // sprawdzanie czy nazwa uzytkownika jest zgodna ze standardem
-           if(myKeyListener.getCode() == 10){
+           if(myKeyListener.getCode() == 10 && welcomeScreen.getTextField().getText().length() > 0){
 
                // niezgodna
                if(!User.checkSpelling(welcomeScreen.getTextField().getText())){
