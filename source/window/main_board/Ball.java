@@ -1,9 +1,14 @@
-package window.board;
+package source.window.main_board;
 
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+
+
+
+
 
 public class Ball {
 
@@ -11,7 +16,9 @@ public class Ball {
     final static protected int SIZE = 36;
     final static protected int SPECIAL_SIZE = 30;
 
-    JLabel ball;
+
+    private JLabel ball;
+
 
 
 
@@ -33,41 +40,35 @@ public class Ball {
     final static protected ImageIcon[] colors = {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, PINK};
 
 
+    // tablica z kolorami do zwracania wyniku
     final static protected ImageIcon[] outputColors = {EMPTY, WHITE, BLACK};
+
 
 
     // konstruktor (towrzy JLabel zawierający odpowienią grafikę)
     public Ball(int index, boolean output){
 
-        ball = new JLabel();
-        ball.setBackground(null);
-        ball.setOpaque(true);
+        this.ball = new JLabel();
+        this.ball.setBackground(null);
+        this.ball.setOpaque(true);
 
+        // sprawdza czy nie jest pobierany kolor do wyniku
         if(!output){
-            ball.setPreferredSize(new Dimension(Ball.SIZE, Ball.SIZE));
-            ball.setIcon(Ball.colors[index]);
+            this.ball.setPreferredSize(new Dimension(SIZE, SIZE));
+            this.ball.setIcon(colors[index]);
         }
         else{
-            ball.setPreferredSize(new Dimension(Ball.SPECIAL_SIZE, Ball.SPECIAL_SIZE));
-            ball.setIcon(Ball.outputColors[index]);
+            this.ball.setPreferredSize(new Dimension(SPECIAL_SIZE, SPECIAL_SIZE));
+            this.ball.setIcon(outputColors[index]);
         }
 
-        ball.setVisible(true);
-        
+        this.ball.setVisible(true);
     }
 
 
-    // gettery
-    protected ImageIcon getWhite(){
-        return WHITE;
-    }
-    
-    protected ImageIcon getBlack(){
-        return BLACK;
-    }
 
+    // getter
     public JLabel getBall(){
-        return ball;
+        return this.ball;
     }
-
 }

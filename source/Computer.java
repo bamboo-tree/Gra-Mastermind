@@ -1,24 +1,31 @@
+package source;
+
 import java.awt.Color;
 import java.util.Random;
 
+
+
+
+
+
 public class Computer {
-    
-    // colors
-    final public Color WHITE = new Color(0xF4F7F5);
-    final public Color LIGHT = new Color(0xA7A2A9);
-    final public Color GRAY = new Color(0x575A5E);
-    final public Color BLACK = new Color(0x08090A);
-    final public Color DARK = new Color(0x222823);
 
 
+    // kolory
+    final static protected Color WHITE = new Color(0xF4F7F5);
+    final static protected Color LIGHT = new Color(0xA7A2A9);
+    final static protected Color GRAY = new Color(0x575A5E);
+    final static protected Color BLACK = new Color(0x08090A);
+    final static protected Color DARK = new Color(0x222823);
+    final static protected Color RED = new Color(0xD00000);
+    final static protected Color GREEN = new Color(0x37FF8B);
 
 
     // zmienne pomocnicze
     private int[] generatedColors = new int[4];
     private int[] output = {-1, -1, -1, -1};
     private int[] input = {-1, -1, -1, -1};
-    final public int DELAY = 50;
-
+    private final int DELAY = 50;
 
 
 
@@ -52,6 +59,8 @@ public class Computer {
     }
 
 
+
+    // sortowanie bombelkowe :)
     public void sort(){
         for(int i = 0; i < 4; i++){
             for(int j = i; j < 4; j++){
@@ -91,6 +100,7 @@ public class Computer {
     }
 
 
+
     // sprawdzanie, czy wzorzec został odgadnięty
     public boolean didWon(){
         for(int i : output){
@@ -101,6 +111,7 @@ public class Computer {
         return true;
     }
 
+    
 
     // sprawdza, czy kolory się powtarzają (nie mogą)
     public boolean colorsRepeat(){
@@ -116,6 +127,9 @@ public class Computer {
     }
 
 
+    
+
+
     // gettery
     public int[] getGeneratedColors(){
         return generatedColors;
@@ -125,11 +139,12 @@ public class Computer {
         return output;
     }
 
+    public int getDELAY(){
+        return DELAY;
+    }
 
     // setter
     public void setInput(int[] input){
         this.input = input;
     }
-
-
 }
