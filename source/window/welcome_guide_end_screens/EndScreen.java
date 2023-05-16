@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,10 +17,11 @@ import source.window.Frame;
 
 public class EndScreen {
 
+    // pola
     private String statsText;
     private String resultText;
     
-
+    // obiekty do utworzenia okna koncowego
     private JPanel myEndScreen;
     private MyJLabel stats;
     private MyJLabel result;
@@ -68,6 +68,7 @@ public class EndScreen {
         buttons.setBackground(MyJLabel.WHITE);
         buttons.setLayout(new GridLayout());
 
+        // zagraj jeszcze raz
         this.playAgain = new Button();
         this.playAgain.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
         this.playAgain.getButton().setText("PLAY AGAIN");
@@ -75,6 +76,7 @@ public class EndScreen {
         this.playAgain.getButton().setOpaque(true);
         this.playAgain.getButton().setBackground(MyJLabel.BLUE);
 
+        // wyjdz z gry
         this.endGame = new Button();
         this.endGame.getButton().setPreferredSize(new Dimension(MyJLabel.WIDTH/2, MyJLabel.HEIGHT));
         this.endGame.getButton().setText("EXIT");

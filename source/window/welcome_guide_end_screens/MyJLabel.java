@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 public class MyJLabel {
 
+    // stale
     final static protected int WIDTH = 900;
     final static protected int HEIGHT = 700;
 
@@ -23,7 +24,7 @@ public class MyJLabel {
 
 
 
-
+    // konstrukt dosc czesto uzywanego schematu JLabel, wiec zrobilem z niego klase
     protected MyJLabel(String text, Dimension preferedSize, int fontSize, Color fontColor, Color backgroundColor, int alignment){
         this.myJLabel = new JLabel();
         this.myJLabel.setPreferredSize(preferedSize);
@@ -35,9 +36,6 @@ public class MyJLabel {
         this.myJLabel.setOpaque(true);
         this.myJLabel.setVisible(true);
     }
-
-
-
 
 
 

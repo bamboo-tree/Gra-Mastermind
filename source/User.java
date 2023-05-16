@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class User {
 
+    // pola uzytkownika
     private String name;
     private int bestScore;
     private int score;
@@ -111,7 +112,7 @@ public class User {
     }
 
 
-    // getter
+    // gettery
     public String getName() {
         return this.name;
     }

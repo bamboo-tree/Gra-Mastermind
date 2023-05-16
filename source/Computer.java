@@ -59,6 +59,7 @@ public class Computer {
     }
 
 
+
     // sortowanie bombelkowe :)
     public void sort(){
         for(int i = 0; i < 4; i++){
@@ -71,6 +72,7 @@ public class Computer {
             }
         }
     }
+
 
 
     // sprawdza poprawność przesłanej odpowiedzi: 0 - nie ma, 1 - w zlym miejscu, 2 - na dobrym miejscu
@@ -98,6 +100,7 @@ public class Computer {
     }
 
 
+
     // sprawdzanie, czy wzorzec został odgadnięty
     public boolean didWon(){
         for(int i : output){
@@ -108,6 +111,7 @@ public class Computer {
         return true;
     }
 
+    
 
     // sprawdza, czy kolory się powtarzają (nie mogą)
     public boolean colorsRepeat(){

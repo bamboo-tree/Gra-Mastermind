@@ -15,13 +15,14 @@ import source.window.Frame;
 
 public class WelcomeScreen {
     
+    // obiekty do stworzenia okna powitalnego
     private JPanel myWelcomeScreen;
     private JTextField usernameInput;
     private MyJLabel userInfo;
 
     
 
-
+    // konstruktor
     public WelcomeScreen(){
         this.myWelcomeScreen = new JPanel();
         this.myWelcomeScreen.setLayout(new BorderLayout());

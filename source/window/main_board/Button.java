@@ -16,8 +16,6 @@ public class Button {
 
 
 
-
-
     
     // konstruktor (tworzy JButton z grafiką odpowiedniego przcisku)
     public Button(){

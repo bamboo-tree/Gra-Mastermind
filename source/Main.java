@@ -16,17 +16,22 @@ import source.window.welcome_guide_end_screens.EndScreen;
 import source.window.welcome_guide_end_screens.WelcomeScreen;
 
 
-public class Mastermind {
+
+
+
+
+public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
         
+        // obiekty do JFrame
         Frame frame = new Frame();
         WelcomeScreen welcomeScreen = new WelcomeScreen();
-
 
         User user;
         MyKeyListener myKeyListener = new MyKeyListener();
 
 
+        // zmienne pomocnicze
         boolean game = true;
         int gamemode = -1;
 
@@ -50,8 +55,9 @@ public class Mastermind {
         frame.getFrame().add(welcomeScreen.getWelcomeScreen(), BorderLayout.CENTER);
         frame.getFrame().setVisible(true);
         welcomeScreen.getTextField().requestFocus(true);
-    
 
+
+        // tworzenie uztkownika
         while(true){
            TimeUnit.MILLISECONDS.sleep(100);
 
@@ -157,7 +163,6 @@ public class Mastermind {
 
 
             // obiekty i zmienne do utworzenia planszy
-            
             Board board = new Board();
             Output output = new Output();
 
@@ -228,9 +233,10 @@ public class Mastermind {
             */
 
 
-            // dane dla gracza
+            // dane do statystyk gracza
             long time = System.currentTimeMillis();
             int score;
+
 
             // petla gry
             while(currentRow < 10 && !computer.didWon()){

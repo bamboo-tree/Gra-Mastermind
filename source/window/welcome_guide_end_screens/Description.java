@@ -18,11 +18,12 @@ import source.window.Frame;
 
 public class Description {
 
+    // grafiki do przyciskow, wskazuja na sposob sprawdzania
     final private ImageIcon EASY = new ImageIcon(new ImageIcon("./img/easy_mode.png").getImage().getScaledInstance(120, 30, Image.SCALE_DEFAULT));
     final private ImageIcon NORMAL = new ImageIcon(new ImageIcon("./img/normal_mode.png").getImage().getScaledInstance(120, 30, Image.SCALE_DEFAULT));
 
 
-
+    // obiekty do stworzenia opisu
     private JPanel myDescription;
     private Button easyButton;
     private Button normalButton;
