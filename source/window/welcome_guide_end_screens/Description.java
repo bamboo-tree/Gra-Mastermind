@@ -26,7 +26,7 @@ public class Description {
     private JPanel myDescription;
     private Button easyButton;
     private Button normalButton;
-    private String text = "<html><h1>BASIC RULES</h1><p>Your gola is to guess hidden color pattern in smallest number of attempts.<br><br>Every time you submit (ENTER or space) you will get output,<br>depending on gamemode it can be more or less helpful.<br><br><br>BLACK - color is in right place<br>WHITE - color is in wrong place<br>EMPTY - color doesn't occur<br><br><h3>To start choose difficulty below</h3></p></html>";
+    private String text = "<html><h1>BASIC RULES</h1><p>Your gola is to guess hidden color pattern in smallest number of attempts.<br><br>Every time you submit (ENTER or space) you will get an output,<br>depending on gamemode it can be more or less helpful.<br>Colors in your answer can not repeat.<br><br><br>BLACK - color is in right place<br>WHITE - color is in wrong place<br>EMPTY - color doesn't occur<br><br><h3>To start choose difficulty below</h3></p></html>";
 
 
 
