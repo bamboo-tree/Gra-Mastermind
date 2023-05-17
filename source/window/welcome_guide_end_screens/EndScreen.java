@@ -95,7 +95,7 @@ public class EndScreen {
 
     // tekst ze statystykami
     public void createText(User user){
-        this.statsText = String.format("<html><h1>%s</h1><br><h2>TIME: %5.3f s [ %5.3f s ]</h2><h2>SCORE: %d [ %d ]</h2><h2>GAMES PLAYED: %d</h2></html>", user.getName(), user.getTime()/1000, user.getBestTime()/1000, user.getScore(), user.getBestScore(), user.getGamesPlayed());
+        this.statsText = String.format("<html><h1>%s</h1><br><h2>TIME: %2.0f min %5.1f s [ %2.0f min %5.1f s ]</h2><h2>SCORE: %d [ %d ]</h2><h2>GAMES PLAYED: %d</h2></html>", user.getName(), user.getTime()/1000 / 60, user.getTime()/1000 % 60, user.getBestTime()/1000 / 60, user.getBestTime()/1000 % 60, user.getScore(), user.getBestScore(), user.getGamesPlayed());
     }
 
     // informacja o wygranej lub przegranej
