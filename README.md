@@ -25,8 +25,8 @@ Posiadając tak okrojone informacje trzeba odgadnąć wzór, w jak najmniejszej 
 
 <h2>Problem z Mastermind.jar</h2>
 <p>Jeżeli występują problemy z plikiem .jar można sprawdzić następujące rzeczy:<br>
-1. Czy na urządzeniu jest zainstalowana maszyna javy, żeby sprawdzić w cmd należy wpisać polecenie <b>java -version</b> powinna się wyświetlić inforamcja o wersji, jeżeli wyskakuje błąd youtube<br>
-2. Można utworzyć od zera plik .jar. W tym celu należy mieć posiadać JDK i wykonać następujące korki:<br>
+1. Czy na urządzeniu jest zainstalowana maszyna javy, żeby sprawdzić w cmd należy wpisać polecenie <b>java -version</b> powinna się wyświetlić inforamcja o wersji, jeżeli wyskakuje błąd -> youtube<br>
+2. Można utworzyć od zera plik .jar. W tym celu należy posiadać JDK i wykonać następujące korki:<br>
 -> otworzyć folder z projektem<br>
 -> usunąć istniejący plik Mastermin.jar<br>
 -> włączyć cmd w lokalizacji projektu<br>
